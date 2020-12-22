@@ -5,9 +5,8 @@ account: dineshrpoddaturi
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1524496
-bundleId: 2616985
+bundleId: 4019611
 url: https://dineshrpoddaturi.shinyapps.io/UnitedStates-SocioeconomicIndicators/
-when: 1574716437.41835
+when: 1608659827.56352
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: Images
