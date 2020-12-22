@@ -1,19 +1,17 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1608657719595.000,
+    "created" : 1608659685896.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
-    "id" : "396FC1B2",
+    "hash" : "490817602",
+    "id" : "99458875",
     "lastKnownWriteTime" : 1608658278,
-    "last_content_update" : 1608658278694,
-    "path" : "/Users/Dinesh/Dinesh/Socioeconomic Indicators/Socioeconomic-Indicators-US/ShinyApp/Shiny.R",
-    "project_path" : "ShinyApp/Shiny.R",
+    "last_content_update" : 1608658278,
+    "path" : "/Users/Dinesh/Dinesh/Socioeconomic Indicators/Socioeconomic-Indicators-US/ShinyApp/shiny.R",
+    "project_path" : "ShinyApp/shiny.R",
     "properties" : {
-        "cursorPosition" : "397,0",
-        "scrollLine" : "71"
     },
     "read_only" : false,
     "read_only_alternatives" : [
