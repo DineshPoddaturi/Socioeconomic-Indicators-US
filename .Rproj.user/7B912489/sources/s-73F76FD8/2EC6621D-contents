@@ -31,7 +31,7 @@ educationTidy <- function(education){
   education_tidy <- education_tidy %>% gather(key="TypeofEducation-Year",value="Value",4:7) %>% 
     separate(`TypeofEducation-Year`,into=c("Type","Year"),sep="-")
   
-  education_tidy$Year <- gsub("2013.17",replacement = "2017",education_tidy$Year,fixed = TRUE)
+  education_tidy$Year <- gsub("2014.18",replacement = "2018",education_tidy$Year,fixed = TRUE)
   education_tidy$Type <- gsub("."," ",education_tidy$Type,fixed = TRUE)
   
   return (education_tidy)
@@ -53,7 +53,7 @@ educationTrendsTidy <- function(education){
   education_trends_tidy <- education_trends_tidy %>% gather(key="Type-Year",value="Number",c(4:23)) %>% 
     separate(`Type-Year`,into=c("Type","Year"),sep="-")
   
-  education_trends_tidy$Year <- gsub("2013.17","2017",education_trends_tidy$Year,fixed = TRUE) 
+  education_trends_tidy$Year <- gsub("2014.18","2018",education_trends_tidy$Year,fixed = TRUE) 
   
   education_trends_tidy$Type <- gsub("."," ",education_trends_tidy$Type,fixed = TRUE)
   
@@ -65,10 +65,10 @@ educationTrendsTidy <- function(education){
 populationTidy <- function(population){
   
   #selecting the important variables
-  population_tidy <- population %>% select(1,2,3,19,109,117) %>% data.frame()
+  population_tidy <- population %>% select(1,2,3,20,120,129) %>% data.frame()
   
   #renaming some columns to common pattern
-  names(population_tidy)[4:6] <- c("Population-2018","BirthRate-2018","DeathRate-2018")
+  names(population_tidy)[4:6] <- c("Population-2019","BirthRate-2019","DeathRate-2019")
   
   #here we gather the data and split to give us a tidy format of our data 
   population_tidy<- population_tidy %>% gather(key="Type-Year",value="Value",c(4:6)) %>% separate(`Type-Year`,into=c("Type","Year"))
@@ -80,7 +80,7 @@ populationTidy <- function(population){
 populationTrendsTidy <- function(population){
   
   #selecting the important variables
-  population_trends_tidy <- population %>% select(1,2,3,11,12,13,14,15,16,17,18,19,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117)%>%data.frame()
+  population_trends_tidy <- population %>% select(1,2,3,11,12,13,14,15,16,17,18,19,20,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129)%>%data.frame()
   
   #renaming some columns to common pattern
   names(population_trends_tidy) <- gsub("R_birth","BirthRate",names(population_trends_tidy),fixed=TRUE)
@@ -89,7 +89,7 @@ populationTrendsTidy <- function(population){
   
   
   #here we gather the data and split to give us a tidy format of our data 
-  population_trends_tidy<- population_trends_tidy %>% gather(key="Type-Year",value="Number",c(4:28)) %>% separate(`Type-Year`,into=c("Type","Year"))
+  population_trends_tidy<- population_trends_tidy %>% gather(key="Type-Year",value="Number",c(4:31)) %>% separate(`Type-Year`,into=c("Type","Year"))
   
   
   return(population_trends_tidy)
@@ -105,7 +105,7 @@ povertyTidy <- function(poverty){
   names(poverty_tidy) <- c("FIPS","State","Area_Name","Percent of people of all ages in poverty","Percent of people age 0-17 in poverty","Median_Household_Income")
   
   #here we gather the data us a tidy format of our data 
-  poverty_tidy <- poverty_tidy %>% gather(key="Type",value="Value",c(4:6)) %>% mutate(Year="2017")
+  poverty_tidy <- poverty_tidy %>% gather(key="Type",value="Value",c(4:6)) %>% mutate(Year="2018")
   
   return (poverty_tidy)
   
@@ -113,9 +113,9 @@ povertyTidy <- function(poverty){
 
 unemploymentTidy <- function(unemployment){
   
-  unemployment_tidy <- unemployment %>% select(1,2,3,54) %>% data.frame()
+  unemployment_tidy <- unemployment %>% select(1,2,3,86) %>% data.frame()
   #renaming some columns to common pattern
-  unemployment_tidy <- unemployment_tidy %>% rename("FIPS"=`FIPS`,"Area_Name"=`Area_name`,"Unemployment Rate-2018"=`Unemployment_rate_2018`) 
+  unemployment_tidy <- unemployment_tidy %>% rename("FIPS"=`FIPS`,"Area_Name"=`Area_name`,"Unemployment Rate-2019"=`Unemployment_rate_2019`) 
   
   # %>% 
   #   mutate(`Unemployment Rate-2015`=parse_number(`Unemployment Rate-2015`))
@@ -128,7 +128,7 @@ unemploymentTidy <- function(unemployment){
 
 unemploymentTrendsTidy <- function(unemployment){
   
-  unemployment_trends_tidy <- unemployment %>% select(1,2,3,10,14,18,22,26,30,34,38,42,46,50,54) %>% data.frame()
+  unemployment_trends_tidy <- unemployment %>% select(1,2,3,38,42,46,50,54,58,62,66,70,74,78,82,86) %>% data.frame()
   
   #renaming some columns to common pattern
   unemployment_trends_tidy <- unemployment_trends_tidy %>% rename("FIPS"=`FIPS`,"Area_Name"=`Area_name`)
@@ -141,7 +141,7 @@ unemploymentTrendsTidy <- function(unemployment){
   names(unemployment_trends_tidy) <- gsub("Unemployment_rate","UnemploymentRate",names(unemployment_trends_tidy),fixed=TRUE)
   
   #here we gather the data and split to give us a tidy format of our data 
-  unemployment_trends_tidy <- unemployment_trends_tidy %>% gather(key="Type-year", value="Number",c(4:15)) %>% 
+  unemployment_trends_tidy <- unemployment_trends_tidy %>% gather(key="Type-year", value="Number",c(4:16)) %>% 
     separate(`Type-year`,into=c("Type", "Year"),sep="_")
   
   
@@ -199,10 +199,10 @@ stateWide <- function(data,indicator){
 
 
 #reading data
-education <- read_xls(path="data/Education_2019.xls",sheet = 1)
-population <- read_xls(path="data/PopulationEstimates_2019.xls",sheet = 1)
-poverty <- read_xls(path="data/PovertyEstimates_2019.xls", sheet = 1)
-unemployment <- read_xls(path="data/Unemployment_2019.xls", sheet=1)
+education <- read_xls(path="/data/2020/Education.xls",sheet = 1)
+population <- read_xls(path="data/2020/PopulationEstimates.xls",sheet = 1)
+poverty <- read_xls(path="data/2020/PovertyEstimates.xls", sheet = 1)
+unemployment <- read_xls(path="data/2020/Unemployment.xls", sheet=1)
 
 
 education_tidy <- educationTidy(education)
