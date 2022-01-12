@@ -31,7 +31,7 @@ educationTidy <- function(education){
   education_tidy <- education_tidy %>% gather(key="TypeofEducation-Year",value="Value",4:7) %>% 
     separate(`TypeofEducation-Year`,into=c("Type","Year"),sep="-")
   
-  education_tidy$Year <- gsub("2014.18",replacement = "2018",education_tidy$Year,fixed = TRUE)
+  education_tidy$Year <- gsub("2015.19",replacement = "2015-2019",education_tidy$Year,fixed = TRUE)
   education_tidy$Type <- gsub("."," ",education_tidy$Type,fixed = TRUE)
   
   return (education_tidy)
@@ -53,7 +53,7 @@ educationTrendsTidy <- function(education){
   education_trends_tidy <- education_trends_tidy %>% gather(key="Type-Year",value="Number",c(4:23)) %>% 
     separate(`Type-Year`,into=c("Type","Year"),sep="-")
   
-  education_trends_tidy$Year <- gsub("2014.18","2018",education_trends_tidy$Year,fixed = TRUE) 
+  education_trends_tidy$Year <- gsub("2015.19","2015-2019",education_trends_tidy$Year,fixed = TRUE) 
   
   education_trends_tidy$Type <- gsub("."," ",education_trends_tidy$Type,fixed = TRUE)
   
@@ -105,7 +105,7 @@ povertyTidy <- function(poverty){
   names(poverty_tidy) <- c("FIPS","State","Area_Name","Percent of people of all ages in poverty","Percent of people age 0-17 in poverty","Median_Household_Income")
   
   #here we gather the data us a tidy format of our data 
-  poverty_tidy <- poverty_tidy %>% gather(key="Type",value="Value",c(4:6)) %>% mutate(Year="2018")
+  poverty_tidy <- poverty_tidy %>% gather(key="Type",value="Value",c(4:6)) %>% mutate(Year="2019")
   
   return (poverty_tidy)
   
@@ -113,9 +113,9 @@ povertyTidy <- function(poverty){
 
 unemploymentTidy <- function(unemployment){
   
-  unemployment_tidy <- unemployment %>% select(1,2,3,86) %>% data.frame()
+  unemployment_tidy <- unemployment %>% select(1,2,3,90) %>% data.frame()
   #renaming some columns to common pattern
-  unemployment_tidy <- unemployment_tidy %>% rename("FIPS"=`FIPS`,"Area_Name"=`Area_name`,"Unemployment Rate-2019"=`Unemployment_rate_2019`) 
+  unemployment_tidy <- unemployment_tidy %>% rename("FIPS"=`FIPS_Code`,"Area_Name"=`Area_name`,"Unemployment Rate-2020"=`Unemployment_rate_2020`) 
   
   # %>% 
   #   mutate(`Unemployment Rate-2015`=parse_number(`Unemployment Rate-2015`))
@@ -128,10 +128,10 @@ unemploymentTidy <- function(unemployment){
 
 unemploymentTrendsTidy <- function(unemployment){
   
-  unemployment_trends_tidy <- unemployment %>% select(1,2,3,38,42,46,50,54,58,62,66,70,74,78,82,86) %>% data.frame()
+  unemployment_trends_tidy <- unemployment %>% select(1,2,3,38,42,46,50,54,58,62,66,70,74,78,82,86,90) %>% data.frame()
   
   #renaming some columns to common pattern
-  unemployment_trends_tidy <- unemployment_trends_tidy %>% rename("FIPS"=`FIPS`,"Area_Name"=`Area_name`)
+  unemployment_trends_tidy <- unemployment_trends_tidy %>% rename("FIPS"=`FIPS_Code`,"Area_Name"=`Area_name`)
   
   columnNames <- colnames(unemployment_trends_tidy)[4:12]
   #here we parse the data into numeric since it was in character format
@@ -141,7 +141,7 @@ unemploymentTrendsTidy <- function(unemployment){
   names(unemployment_trends_tidy) <- gsub("Unemployment_rate","UnemploymentRate",names(unemployment_trends_tidy),fixed=TRUE)
   
   #here we gather the data and split to give us a tidy format of our data 
-  unemployment_trends_tidy <- unemployment_trends_tidy %>% gather(key="Type-year", value="Number",c(4:16)) %>% 
+  unemployment_trends_tidy <- unemployment_trends_tidy %>% gather(key="Type-year", value="Number",c(4:17)) %>% 
     separate(`Type-year`,into=c("Type", "Year"),sep="_")
   
   
@@ -199,10 +199,10 @@ stateWide <- function(data,indicator){
 
 
 #reading data
-education <- read_xls(path="data/Education_2020.xls",sheet = 1)
+education <- read_xls(path="data/Education_2021.xls",sheet = 1)
 population <- read_xls(path="data/PopulationEstimates_2020.xls",sheet = 1)
-poverty <- read_xls(path="data/PovertyEstimates_2020.xls", sheet = 1)
-unemployment <- read_xls(path="data/Unemployment_2020.xls", sheet=1)
+poverty <- read_xls(path="data/PovertyEstimates_2021.xls", sheet = 1)
+unemployment <- read_xls(path="data/Unemployment_2021.xls", sheet=1)
 
 
 education_tidy <- educationTidy(education)

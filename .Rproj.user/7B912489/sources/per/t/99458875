@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1608659685896.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "64|39|77|0|\n79|45|96|0|\n113|43|126|0|\n128|49|149|0|\n",
+    "hash" : "1768661220",
+    "id" : "99458875",
+    "lastKnownWriteTime" : 1640020320,
+    "last_content_update" : 1640020320165,
+    "path" : "/Users/Dinesh/Dinesh/Shiny Apps/Socioeconomic Indicators/Socioeconomic-Indicators-US/ShinyApp/shiny.R",
+    "project_path" : "ShinyApp/shiny.R",
+    "properties" : {
+        "cursorPosition" : "211,0",
+        "scrollLine" : "192"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
